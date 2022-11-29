@@ -2,26 +2,14 @@
   {
     "id": "88ded796-ff6f-4f1f-ab69-c882c2dae696",
     "name": "anna",
-    "email": "111@hmail.com",
-    "phone": "380 50 567 90 23"
-  },
-  {
-    "id": "44c5a34b-3c21-40fb-9111-2004f9433bd8",
-    "name": "anna",
-    "email": "111@hmail.com",
-    "phone": "380 50 567 90 2"
-  },
-  {
-    "id": "deee410a-adc5-4795-8ff2-c05aa4e36456",
-    "name": "anna",
-    "email": "111@hmail.com",
-    "phone": "380 50 567 90 2"
+    "email": "anna@gmail.com",
+    "phone": "380 50 987 14 80"
   },
   {
     "id": "ed4b2c9b-fb9a-4297-b558-4a9c207010e5",
     "name": "anna",
     "email": "111@hmail.com",
-    "phone": "380 50 567 90 23"
+    "phone": "380 50 789 00 45"
   },
   {
     "id": "6573c2a5-5ae9-4990-9935-0df1adac1daa",
@@ -34,24 +22,6 @@
     "name": "tolia",
     "email": "2222@hmail.com",
     "phone": "380 99 042 90 54"
-  },
-  {
-    "id": "1",
-    "name": "213",
-    "email": "te",
-    "phone": "tes123123t23"
-  },
-  {
-    "id": "2",
-    "name": "111111",
-    "email": "222222",
-    "phone": "3333333"
-  },
-  {
-    "id": "3",
-    "name": "Kennedy Lane",
-    "email": "mattis.Cras@nonenimMauris.net",
-    "phone": "(542) 451-7038"
   },
   {
     "id": "4",
@@ -88,11 +58,5 @@
     "name": "Thomas Lucas",
     "email": "nec@Nulla.com",
     "phone": "(704) 398-7993"
-  },
-  {
-    "id": "10",
-    "name": "Alec Howard",
-    "email": "Donec.elementum@scelerisquescelerisquedui.net",
-    "phone": "(748) 206-2688"
   }
 ]

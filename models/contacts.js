@@ -1,6 +1,8 @@
+const { log } = require('console');
 const fs = require('fs/promises');
 const path = require('path');
 const { v4: uuidv4 } = require('uuid');
+const { createError } = require('../helpers/createError');
 
 const contactsDataPath = path.join(__dirname, './contacts.json');
 
@@ -25,9 +27,7 @@ const removeContact = async (contactId) => {
     (el) => el.id === contactId
   );
 
-  if (conatactIndex === '-1') {
-    return;
-  }
+  if (conatactIndex === -1) return conatactIndex;
 
   parsedContactsList.splice(conatactIndex, 1);
 

@@ -3,7 +3,7 @@ function controllerWrapper(controller) {
     try {
       await controller(req, res);
     } catch (error) {
-      next(error.message);
+      next(error);
     }
   };
 
