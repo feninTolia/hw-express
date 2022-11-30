@@ -1,4 +1,3 @@
-const { log } = require('console');
 const fs = require('fs/promises');
 const path = require('path');
 const { v4: uuidv4 } = require('uuid');
@@ -12,7 +11,7 @@ const listContacts = async () => {
   return JSON.parse(contactsList);
 };
 
-const getContactById = async (contactId) => {
+const getById = async (contactId) => {
   const contactsList = await fs.readFile(contactsDataPath, 'utf-8');
   const parsedContactsList = JSON.parse(contactsList);
   const [contact] = parsedContactsList.filter((el) => el.id === contactId);
@@ -55,7 +54,7 @@ const addContact = async (body) => {
     JSON.stringify(newContactsList, null, 2),
     'utf-8'
   );
-  return newContactsList;
+  return newContact;
 };
 
 const updateContact = async (contactId, body) => {
@@ -66,7 +65,7 @@ const updateContact = async (contactId, body) => {
     (el) => el.id === contactId
   );
 
-  if (conatactIndex === '-1') return;
+  if (conatactIndex === -1) return conatactIndex;
 
   const [conatact] = parsedContactsList.filter((el) => el.id === contactId);
 
@@ -90,7 +89,7 @@ const updateContact = async (contactId, body) => {
 
 module.exports = {
   listContacts,
-  getContactById,
+  getById,
   removeContact,
   addContact,
   updateContact,
