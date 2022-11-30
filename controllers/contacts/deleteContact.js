@@ -1,8 +1,8 @@
 const { createError } = require('../../helpers/createError');
-const contacts = require('../../models/contacts');
+const { removeContact } = require('../../models/contacts');
 
 async function deleteContact(req, res) {
-  const result = await contacts.removeContact(req.params.contactId);
+  const result = await removeContact(req.params.contactId);
   if (result === -1) {
     throw createError({ status: 404 });
   }
