@@ -11,6 +11,12 @@ const updateContactSchema = Joi.object({
     /^\+?3?8?(0[\s.-]\d{2}[\s.-]\d{3}[\s.-]\d{2}[\s.-]\d{2})$/,
     '--380 XX XXX XX XX--'
   ),
-});
-
+  favorite: Joi.boolean(),
+})
+  .keys()
+  .min(1)
+  .required()
+  .messages({
+    'any.required': 'Missing fields',
+  });
 module.exports = updateContactSchema;

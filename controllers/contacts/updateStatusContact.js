@@ -1,6 +1,6 @@
 const Contact = require('../../models');
 
-async function updateContact(req, res) {
+async function updateStatusContact(req, res) {
   const { contactId } = req.params;
   const { name, email, phone, favorite } = req.body;
 
@@ -21,4 +21,4 @@ async function updateContact(req, res) {
   res.json(result);
 }
 
-module.exports = updateContact;
+module.exports = updateStatusContact;

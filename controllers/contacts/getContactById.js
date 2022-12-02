@@ -1,12 +1,10 @@
-const { createError } = require('../../helpers/createError');
-const { getById } = require('../../models/contacts');
+const Contact = require('../../models');
 
 async function getContactById(req, res) {
-  const contact = await getById(req.params.contactId);
+  const { contactId } = req.params;
 
-  if (!contact) {
-    throw createError({ status: 404 });
-  }
+  const contact = await Contact.findById(contactId);
+
   res.json(contact);
 }
 
