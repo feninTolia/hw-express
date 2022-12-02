@@ -1,4 +1,4 @@
-const Contact = require('../../models');
+const Contact = require('../../models/contacts');
 
 async function deleteContact(req, res) {
   const { contactId } = req.params;
