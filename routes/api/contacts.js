@@ -1,12 +1,12 @@
 const express = require('express');
 
 const {
-  getAll,
-  getContactById,
-  addContact,
-  deleteContact,
-  updateContact,
-  updateStatusContact,
+  getAllController,
+  getContactByIdController,
+  addContactController,
+  deleteContactController,
+  updateContactController,
+  updateStatusContactController,
 } = require('../../controllers/contacts');
 
 const controllerWrapper = require('../../helpers/controllerWrapper');
@@ -21,23 +21,31 @@ const {
 const router = express.Router();
 
 router
-  .get('/', controllerWrapper(getAll))
-  .post('/', validateBody(addContactSchema), controllerWrapper(addContact));
+  .get('/', controllerWrapper(getAllController))
+  .post(
+    '/',
+    validateBody(addContactSchema),
+    controllerWrapper(addContactController)
+  );
 
 router
-  .get('/:contactId', isValidDBID(), controllerWrapper(getContactById))
+  .get('/:contactId', isValidDBID, controllerWrapper(getContactByIdController))
   .put(
     '/:contactId',
-    isValidDBID(),
+    isValidDBID,
     validateBody(updateContactSchema),
-    controllerWrapper(updateContact)
+    controllerWrapper(updateContactController)
   )
-  .delete('/:contactId', isValidDBID(), controllerWrapper(deleteContact));
+  .delete(
+    '/:contactId',
+    isValidDBID,
+    controllerWrapper(deleteContactController)
+  );
 
 router.patch(
   '/:contactId/favorite',
-  isValidDBID(),
+  isValidDBID,
   validateBody(updateStatusContactSchema),
-  controllerWrapper(updateStatusContact)
+  controllerWrapper(updateStatusContactController)
 );
 module.exports = router;

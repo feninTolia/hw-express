@@ -13,10 +13,8 @@ const updateContactSchema = Joi.object({
   ),
   favorite: Joi.boolean(),
 })
-  .keys()
-  .min(1)
   .required()
-  .messages({
-    'any.required': 'Missing fields',
-  });
+  .min(1)
+  .messages({ 'object.min': 'missing fields' });
+
 module.exports = updateContactSchema;

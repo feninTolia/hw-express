@@ -1,6 +1,7 @@
+const { createError } = require('../../helpers/createError');
 const Contact = require('../../models/contacts');
 
-async function updateContact(req, res) {
+async function updateContactController(req, res) {
   const { contactId } = req.params;
   const { name, email, phone, favorite } = req.body;
 
@@ -18,7 +19,14 @@ async function updateContact(req, res) {
     }
   );
 
+  if (!result) {
+    throw createError({
+      status: 400,
+      message: `No such entity with id = ${contactId}`,
+    });
+  }
+
   res.json(result);
 }
 
-module.exports = updateContact;
+module.exports = updateContactController;
