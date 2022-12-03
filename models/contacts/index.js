@@ -1,13 +1,25 @@
-const listContacts = require('./listContacts');
-const getById = require('./getById');
-const removeContact = require('./removeContact');
-const addContact = require('./addContact');
-const updateContact = require('./updateContact');
+const { Schema, model } = require('mongoose');
 
-module.exports = {
-  listContacts,
-  getById,
-  removeContact,
-  addContact,
-  updateContact,
-};
+const contactSchema = new Schema(
+  {
+    name: {
+      type: String,
+      required: [true, 'Set name for contact'],
+    },
+    email: {
+      type: String,
+    },
+    phone: {
+      type: String,
+    },
+    favorite: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  { timestamps: true }
+);
+
+const Contact = model('contact', contactSchema);
+
+module.exports = Contact;
