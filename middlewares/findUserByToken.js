@@ -1,6 +1,6 @@
 const { User } = require('../models/users');
 const jwt = require('jsonwebtoken');
-const { createError } = require('../helpers/createError');
+const { createError } = require('../helpers');
 
 const findUserByToken = async (req, res, next) => {
   try {
