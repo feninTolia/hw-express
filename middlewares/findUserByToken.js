@@ -5,7 +5,7 @@ const { createError } = require('../helpers');
 const findUserByToken = async (req, res, next) => {
   try {
     const [, token] = req.headers.authorization.split(' ');
-    const jwtUser = jwt.decode(token, process.env.JWT_SECRET);
+    const jwtUser = jwt.verify(token, process.env.JWT_SECRET);
     const user = await User.findById(jwtUser.userID);
 
     req.user = user;

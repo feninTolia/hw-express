@@ -10,12 +10,12 @@ const authMiddleware = async (req, res, next) => {
       next(createError({ status: 401 }));
     }
 
-    const jwtUser = jwt.decode(token, process.env.JWT_SECRET);
+    const jwtUser = jwt.verify(token, process.env.JWT_SECRET);
 
     const user = await User.findOne({ _id: jwtUser.userID });
 
     req.user = user;
-    // req.token = token;
+
     next();
   } catch (error) {
     next(createError({ status: 401 }));
