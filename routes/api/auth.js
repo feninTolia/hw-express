@@ -4,12 +4,15 @@ const {
   loginController,
   logoutController,
   currentController,
+  subscriptionController,
 } = require('../../controllers/auth');
 const controllerWrapper = require('../../helpers/controllerWrapper');
 const { registerUserSchema, loginUserSchema } = require('../../validation');
 const { validateBody, findUserByToken } = require('../../middlewares');
 
 const router = express.Router();
+
+router.patch('/', findUserByToken, controllerWrapper(subscriptionController));
 
 router.post(
   '/register',
