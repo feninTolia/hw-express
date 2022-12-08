@@ -1,7 +1,7 @@
 const Joi = require('joi');
 
 const addContactSchema = Joi.object({
-  name: Joi.string().alphanum().min(2).max(30).required().messages({
+  name: Joi.string().min(2).max(30).required().messages({
     'any.required': 'missing required name field',
   }),
 

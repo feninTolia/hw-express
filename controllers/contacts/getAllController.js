@@ -1,7 +1,9 @@
 const Contact = require('../../models/contacts');
 
-async function getAll(_, res) {
-  const contatcsList = await Contact.find({});
+async function getAll(req, res) {
+  const { _id: owner } = req.user;
+
+  const contatcsList = await Contact.find({ owner });
 
   res.json(contatcsList);
 }

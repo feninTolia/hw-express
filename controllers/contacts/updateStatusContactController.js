@@ -4,9 +4,10 @@ const Contact = require('../../models/contacts');
 async function updateStatusContact(req, res) {
   const { contactId } = req.params;
   const { name, email, phone, favorite } = req.body;
+  const { _id: owner } = req.user;
 
-  const result = await Contact.findByIdAndUpdate(
-    contactId,
+  const result = await Contact.findOneAndUpdate(
+    { _id: contactId, owner },
     {
       name,
       email,
@@ -22,7 +23,7 @@ async function updateStatusContact(req, res) {
   if (!result) {
     throw createError({
       status: 400,
-      message: `No such entity with id = ${contactId}`,
+      message: `Wrong ID`,
     });
   }
 
