@@ -5,15 +5,9 @@ const addContactSchema = Joi.object({
     'any.required': 'missing required name field',
   }),
 
-  email: Joi.string()
-    .email({
-      minDomainSegments: 2,
-      tlds: { allow: ['com', 'net'] },
-    })
-    .required()
-    .messages({
-      'any.required': 'missing required email field',
-    }),
+  email: Joi.string().email().required().messages({
+    'any.required': 'missing required email field',
+  }),
   phone: Joi.string()
     .regex(
       /^\+?3?8?(0[\s.-]\d{2}[\s.-]\d{3}[\s.-]\d{2}[\s.-]\d{2})$/,

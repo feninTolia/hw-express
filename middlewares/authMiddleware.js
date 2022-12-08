@@ -4,11 +4,10 @@ const { User } = require('../models/users');
 
 const authMiddleware = async (req, res, next) => {
   try {
-    // eslint-disable-next-line no-unused-vars
-    const [tokenType, token] = req.headers.authorization.split(' ');
+    const [, token] = req.headers.authorization.split(' ');
 
     if (!token) {
-      next(createError({ status: 401, message: 'Please, provide a token' }));
+      next(createError({ status: 401 }));
     }
 
     const jwtUser = jwt.decode(token, process.env.JWT_SECRET);

@@ -12,7 +12,7 @@ const { validateBody, findUserByToken } = require('../../middlewares');
 const router = express.Router();
 
 router.post(
-  '/registration',
+  '/register',
   validateBody(registerUserSchema),
   controllerWrapper(registrationController)
 );

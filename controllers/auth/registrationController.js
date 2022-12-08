@@ -4,7 +4,7 @@ const registrationController = async (req, res) => {
   const { email, password } = req.body;
   const result = await registration(email, password);
 
-  res.json({
+  res.status(201).json({
     user: {
       email,
       subscription: result.subscription,
