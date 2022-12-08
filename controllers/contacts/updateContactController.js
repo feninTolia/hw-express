@@ -1,12 +1,13 @@
-const { createError } = require('../../helpers/createError');
+const { createError } = require('../../helpers');
 const Contact = require('../../models/contacts');
 
 async function updateContactController(req, res) {
   const { contactId } = req.params;
   const { name, email, phone, favorite } = req.body;
+  const { _id: owner } = req.user;
 
-  const result = await Contact.findByIdAndUpdate(
-    contactId,
+  const result = await Contact.findOneAndUpdate(
+    { _id: contactId, owner },
     {
       name,
       email,

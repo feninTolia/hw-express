@@ -1,5 +1,4 @@
 const express = require('express');
-
 const {
   getAllController,
   getContactByIdController,
@@ -8,10 +7,12 @@ const {
   updateContactController,
   updateStatusContactController,
 } = require('../../controllers/contacts');
-
 const controllerWrapper = require('../../helpers/controllerWrapper');
-const { validateBody, isValidDBID } = require('../../middlewares');
-
+const {
+  validateBody,
+  isValidDBID,
+  authMiddleware,
+} = require('../../middlewares');
 const {
   addContactSchema,
   updateContactSchema,
@@ -19,6 +20,8 @@ const {
 } = require('../../validation');
 
 const router = express.Router();
+
+router.use(authMiddleware);
 
 router
   .get('/', controllerWrapper(getAllController))

@@ -1,15 +1,19 @@
-const { createError } = require('../../helpers/createError');
+const { createError } = require('../../helpers');
 const Contact = require('../../models/contacts');
 
 async function getContactById(req, res) {
   const { contactId } = req.params;
+  const { _id: owner } = req.user;
 
-  const result = await Contact.findById(contactId);
+  const result = await Contact.findOne({
+    _id: contactId,
+    owner,
+  }).populate('owner');
 
   if (!result) {
     throw createError({
       status: 400,
-      message: `No such entity with id = ${contactId}`,
+      message: `Wrong ID`,
     });
   }
 
