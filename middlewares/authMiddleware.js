@@ -18,7 +18,7 @@ const authMiddleware = async (req, res, next) => {
     // req.token = token;
     next();
   } catch (error) {
-    next(createError({ status: 401, message: 'Invalid token or ID' }));
+    next(createError({ status: 401 }));
   }
 };
 
