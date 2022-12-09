@@ -1,5 +1,6 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const gravatar = require('gravatar');
 
 const { createError } = require('../helpers');
 const { User } = require('../models/users/index');
@@ -13,6 +14,7 @@ const registration = async (email, password) => {
   const newUser = new User({
     email,
     password,
+    avatarURL: gravatar.url(email, { s: '100', r: 'x', d: 'retro' }, false),
   });
 
   await newUser.save();
