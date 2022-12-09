@@ -8,11 +8,11 @@ const {
 } = require('../../controllers/auth');
 const controllerWrapper = require('../../helpers/controllerWrapper');
 const { registerUserSchema, loginUserSchema } = require('../../validation');
-const { validateBody, findUserByToken } = require('../../middlewares');
+const { validateBody, authMiddleware } = require('../../middlewares');
 
 const router = express.Router();
 
-router.patch('/', findUserByToken, controllerWrapper(subscriptionController));
+router.patch('/', authMiddleware, controllerWrapper(subscriptionController));
 
 router.post(
   '/register',
@@ -26,8 +26,8 @@ router.post(
   controllerWrapper(loginController)
 );
 
-router.post('/logout', findUserByToken, controllerWrapper(logoutController));
+router.post('/logout', authMiddleware, controllerWrapper(logoutController));
 
-router.get('/current', findUserByToken, controllerWrapper(currentController));
+router.get('/current', authMiddleware, controllerWrapper(currentController));
 
 module.exports = router;
