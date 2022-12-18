@@ -1,5 +1,4 @@
 const { User } = require('../../models/users');
-const jwt = require('jsonwebtoken');
 
 const logoutController = async (req, res) => {
   const { _id } = req.user;
