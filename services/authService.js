@@ -35,7 +35,7 @@ const login = async (email, password) => {
   if (!(await bcrypt.compare(password, user.password))) {
     throw createError({
       status: 401,
-      message: `Email or password wrong`,
+      message: `password wrong`,
     });
   }
 
