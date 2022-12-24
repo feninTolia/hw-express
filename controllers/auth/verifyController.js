@@ -11,11 +11,11 @@ async function verifyController(req, res) {
   }
 
   await User.findByIdAndUpdate(user._id, {
-    isVerified: true,
-    verificationToken: '',
+    verify: true,
+    verificationToken: null,
   });
 
-  res.status(200).json({ message: 'Email was succsesfully verified' });
+  res.status(200).json({ message: 'Verification successful' });
 }
 
 module.exports = verifyController;

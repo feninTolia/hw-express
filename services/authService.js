@@ -45,6 +45,12 @@ const registration = async (email, password) => {
 const login = async (email, password) => {
   const user = await User.findOne({ email });
 
+  if (!user.verify) {
+    throw createError({
+      status: 401,
+    });
+  }
+
   if (!user) {
     throw createError({
       status: 401,
@@ -55,7 +61,7 @@ const login = async (email, password) => {
   if (!(await bcrypt.compare(password, user.password))) {
     throw createError({
       status: 401,
-      message: `password wrong`,
+      message: `Email or password wrong`,
     });
   }
 

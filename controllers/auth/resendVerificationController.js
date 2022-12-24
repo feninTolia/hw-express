@@ -12,10 +12,10 @@ async function resendVerificationController(req, res) {
     throw createError({ status: 404 });
   }
 
-  if (user.isVerified) {
+  if (user.verify) {
     throw createError({
       status: 400,
-      message: 'User is already verified',
+      message: 'Verification has already been passed',
       code: 'USER_ALREADY_VERIFIED',
     });
   }
@@ -26,8 +26,8 @@ async function resendVerificationController(req, res) {
     html: `<a href="${BASE_URL}/api/users/verify/${user.verificationToken}">Click to verify your email</a>`,
   };
 
-    await sendEmail(message);
-    
-    res.json({message: 'Email was resend succsesfully'})
+  await sendEmail(message);
+
+  res.json({ message: 'Email was resend succsesfully' });
 }
 module.exports = resendVerificationController;
