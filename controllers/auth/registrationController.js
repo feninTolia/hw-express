@@ -9,6 +9,7 @@ const registrationController = async (req, res) => {
       email,
       subscription: result.subscription,
       avatarURL: result.avatarURL,
+      verificationToken: result.verificationToken,
     },
   });
 };

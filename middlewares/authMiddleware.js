@@ -22,6 +22,13 @@ const authMiddleware = async (req, res, next) => {
       throw createError({ status: 401 });
     }
 
+    if (!user.verify) {
+      throw createError({
+        status: 401,
+        message: 'User is not verified, please check your email',
+      });
+    }
+
     req.user = user;
 
     next();
