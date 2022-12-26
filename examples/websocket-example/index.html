@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simple chat</title>
+  </head>
+  <body>
+    <div>
+      <form action="" id="user-name-form">
+        <label class="form-group">
+          Your name
+          <input type="text" name="userName" placeholder="John" required />
+        </label>
+      </form>
+    </div>
+
+    <div id="chat" class="chat"></div>
+
+    <div id="chat-message">
+      <form action="" id="chat-form">
+        <label class="form-group">
+          Your message
+          <textarea
+            name="message"
+            rows="3"
+            cols="30"
+            placeholder="Type your message here..."
+          ></textarea>
+        </label>
+
+        <button type="submit">Send</button>
+      </form>
+    </div>
+
+    <script
+      src="https://cdn.socket.io/4.5.4/socket.io.min.js"
+      integrity="sha384-/KNQL8Nu5gCHLqwqfQjA689Hhoqgi2S84SNUxC3roTe4EhJ9AfLkp8QiQcU8AMzI"
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+      const userNameForm = document.getElementById('user-name-form');
+      const chat = document.getElementById('chat');
+
+      let userName = '';
+
+      userNameForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        userName = this.elements.userName.value;
+
+        this.remove();
+      });
+
+      const socket = io.connect('http://localhost:3000');
+
+      socket.on('chat-message', (data) => {
+        const { name, message } = data;
+
+        chat.insertAdjacentHTML(
+          'beforeend',
+          `<p>
+              <span class="name">${name}</span>
+              <span class="user-chat-message">${message}</span>
+           </p>`
+        );
+      });
+
+      const chatForm = document.getElementById('chat-form');
+      chatForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const message = this.elements.message.value;
+
+        chat.insertAdjacentHTML(
+          'beforeend',
+          `<p>
+              <span class="name">${userName}</span>
+              <span class="user-chat-message">${message}</span>
+           </p>`
+        );
+
+        const data = {
+          name: userName,
+          message,
+        };
+
+        socket.emit('chat-message', data);
+
+        this.reset();
+      });
+    </script>
+  </body>
+</html>
